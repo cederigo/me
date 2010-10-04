@@ -10,11 +10,15 @@ public class BWImage {
 	private int width;
 	private int height;
 	private int[][] img;
+	private String filename;
 	
 	public static final int BINARIZE_THRESHOLD = 200;
+		
 	
-	BWImage(String nameImg) {
-		BufferedImage bImg = JAI.create("fileload", new File(nameImg).getAbsolutePath()).getAsBufferedImage();
+	public BWImage(File imageFile) {
+		if(imageFile == null) return;
+		filename = imageFile.getName();
+		BufferedImage bImg = JAI.create("fileload", imageFile.getAbsolutePath()).getAsBufferedImage();
 		width = bImg.getWidth();
 		height = bImg.getHeight();
 		img = new int[width][height];
@@ -29,6 +33,21 @@ public class BWImage {
 				}
 			}
 		}
+	}
+	
+	public String getName(){
+		return filename;
+	}
+	
+	public int[][] getPixels(){
+		return img;
+	}
+	
+	public int getWidth(){
+		return width;
+	}
+	public int getHeight(){
+		return height;
 	}
 
 	public String toString() {

@@ -7,15 +7,12 @@ import java.util.List;
 
 import ch.unibe.BWImage;
 
-public class YesNo {
-
-	
+public class YesNo {	
 	
 	enum IMAGE_CLASS {
 		Y,
 		N
-	};
-	
+	};	
 	
 	private BWImage[] imageSet;
 	private int correctClassifications = 0;
@@ -37,7 +34,7 @@ public class YesNo {
 		for(BWImage image : imageSet){
 			IMAGE_CLASS imageClass = classifyImage(image);
 			boolean test = verifyImageClass(image, imageClass); 			
-			System.out.println("image: "+image.getName()+"\tclass(guessed): "+imageClass+"\tcorrect:"+test);
+			//System.out.println("image: "+image.getName()+"\tclass(guessed): "+imageClass+"\tcorrect:"+test);
 			
 			if(test)
 				correctClassifications++;			
