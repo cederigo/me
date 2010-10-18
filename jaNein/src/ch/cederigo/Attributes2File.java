@@ -4,9 +4,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import ch.unibe.BWImage;
 
@@ -14,13 +17,14 @@ public class Attributes2File {
 
 	public static void main(String[] args){
 		
-		if(args.length != 2){
-			System.err.println("usage: "+Attributes2File.class.getName()+" path-to-imageSet out-file");
+		if(args.length != 3){
+			System.err.println("usage: "+Attributes2File.class.getName()+" path-to-imageSet filterRegex out-file");
 			System.exit(1);
 		}
 		
-		String srcpath = args[0];
-		String dstpath = args[1];
+		String srcpath 		= args[0];
+		String filterRegex 	= args[1]; 
+		String dstpath 		= args[2];
 		
 		File setDir = new File(srcpath);
 		if(!setDir.exists()){
@@ -42,13 +46,27 @@ public class Attributes2File {
 			System.exit(1);
 		}
 		
+		final Pattern p = Pattern.compile(filterRegex);
 		
-		for(File f : setDir.listFiles()){
+		FilenameFilter filter = new FilenameFilter() {			
+			public boolean accept(File dir, String name) {
+				
+				Matcher matcher = p.matcher(name);
+				return matcher.find();
+			}
+		};
+		
+		
+		for(File f : setDir.listFiles(filter)){
+			
+			
 			
 			BWImage image = new BWImage(f);
 			if(image == null) continue;
 			
+			
 			ImageAttribute attExtractor = new ImageAttribute(image);
+			System.out.println("processing file: "+image.getName()+" h="+attExtractor.getHorizontalRatio()+" v="+attExtractor.getVerticalRatio());
 			try {
 				writer.write(attExtractor.getHorizontalRatio()+" "+attExtractor.getVerticalRatio()+"\n");
 			} catch (IOException e) {

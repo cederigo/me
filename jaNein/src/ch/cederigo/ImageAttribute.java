@@ -30,14 +30,21 @@ public class ImageAttribute {
 				
 				if(pixel == 1){
 					//left?
-					if(x <= width/2){ l++ ; }else{ r++ ; }
+					if(x < width/2){ l++ ; }else{ r++ ; }
 					//top?
-					if(y <= height/2){ t++; }else{ b++; }
+					if(y < height/2){ t++; }else{ b++; }
 				}				
 			}			
 		}
-		horizRatio = (float)l/(float)r;
-		vertRatio  = (float)t/(float)b;
+		if(r != 0)
+			horizRatio = (float)l/(float)r;
+		else
+			horizRatio = l;
+		if(b != 0)
+			vertRatio = (float)t/(float)b;
+		else
+			vertRatio = b;
+		
 		
 		done = true;	
 		

@@ -1,0 +1,15 @@
+# Trenngerade 
+0 = -0.279*x1 -0.658*x2 + 0.928
+
+# Entscheidungsregel für beliebiges Element x = (x1,x2)'
+d12(x) = -0.279*x1 -0.658*x2 + 0.928
+
+Y falls d12(x) > 0
+N falls d12(x) < 0
+
+# Test mit Trainings-Set
+176 / 24 ( richtig /falsch )
+
+
+
+
