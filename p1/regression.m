@@ -50,6 +50,7 @@ x1 = (-D12(1)*x2 - D12(3)) / D12(2);
 hold on
 xlabel('h=l/r');
 ylabel('v=t/b');
+legend('J','N');
 plot(Y(:,1),Y(:,2),'or');
 plot(N(:,1),N(:,2),'xb');
 plot(x1,x2,'g');

@@ -28,9 +28,11 @@ else
    R=C(I);
    %counts number of unique occurences per col
    n = hist(R,unique(R));
-   %find max of occurences -> index of max is the RESult
-   %no conflict resolution here
-   [dummy,RES] = max(n);   
+   %find max of occurences -> index of max is the RESult   
+   [OCC,RES] = max(n);
+   %conflict resolution -> take min. dist   
+   IDX = find(OCC <= (q/2), length(OCC));   
+   RES(IDX) = C(I(1,IDX));    
 end
 
 %compute rate
@@ -40,6 +42,6 @@ e = sum(TMP) / length(RES);
 
 fprintf('q=%d\n',q);
 fprintf('e=%f\n',e);
-fprintf('%d,',RES);
+fprintf('%d\n,',RES);
 fprintf('\n');
 
