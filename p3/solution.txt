@@ -1,0 +1,17 @@
+ME1 - P3 Cédric Reginster
+--------
+
+
+EK Values
+----------
+Test 1         2         3         4         5         6         7         8         9         10
+K=4: 100.7209  472.9733  333.7583  100.7209  100.7209  472.9733  339.8221  100.7209  482.1950  100.7209
+K=5: 49.1645   87.7347   344.1580  98.7702   98.7702   49.1645   49.1645   49.1645   49.1645   49.1645
+K=6: 45.6423   47.2451   45.6478   98.1548   36.1988   36.1988   98.1548   45.6935   46.0687   86.9077
+
+
+c)
+When using bigger K-values the cluster centers gets more compact and therefore the 
+error Ek smaller. but the distribution of ek becomes wider. 
+(the initial random selection of K cluster centers has more effect on the end result ) 
+ 
